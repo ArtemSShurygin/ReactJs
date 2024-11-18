@@ -1,0 +1,12 @@
+.container {
+	max-width: 1160px;
+	margin: 0 auto;
+}
+
+
+.temperature-converter {
+  display: flex;
+  gap: 50px;
+}
+
+
