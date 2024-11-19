@@ -1,15 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
-import TemperatureConverter from './components/TemperatureConverter'
+import TemperatureConverter from "./components/TemperatureConverter";
+import ToDoList from "./components/ToDoList";
 
 function App() {
-  return (
-  
-    <div className="App container">
-     <TemperatureConverter />
-    </div>
-  );
+	return (
+		<div className="App container">
+			<TemperatureConverter />
+			<ToDoList />
+		</div>
+	);
 }
 
 export default App;
