@@ -2,46 +2,46 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-
 export function TemperatureConverter() {
-	const [celsius, setСelsius] = useState("");
+	const [celsius, setCelsius] = useState("");
 	const [fahrenheit, setFahrenheit] = useState("");
 
-	function changeСelsius(e) {
-		setСelsius(e.target.value);
-		setFahrenheit(e.target.value*9/5+32);
+	function changeCelsius(e) {
+		setCelsius(e.target.value);
+		setFahrenheit((e.target.value * 9) / 5 + 32);
 	}
 
 	function changeFahrenheit(e) {
-		setСelsius((e.target.value-32)*5/9);
+		setCelsius(((e.target.value - 32) * 5) / 9);
 		setFahrenheit(e.target.value);
 	}
 
 	function clearDegrees() {
-    setСelsius("");
+		setCelsius("");
 		setFahrenheit("");
 	}
 
 	return (
 		<div className="temperature-converter">
 			<TextField
-				onClick={clearDegrees}
-				onChange={changeСelsius}
-        type="number"
-				id="filled-basic"
+				onChange={changeCelsius}
+				type="number"
+				id="celsius-input"
 				label="Градусы Цельсия"
 				variant="filled"
 				value={celsius}
 			/>
 			<TextField
-				onClick={clearDegrees}
 				onChange={changeFahrenheit}
-        type="number"
-				id="filled-basic"
+				type="number"
+				id="fahrenheit-input"
 				label="Градусы Фаренгейта"
 				variant="filled"
 				value={fahrenheit}
 			/>
+			<Button variant="contained" onClick={clearDegrees}>
+				Сброс
+			</Button>
 		</div>
 	);
 }
