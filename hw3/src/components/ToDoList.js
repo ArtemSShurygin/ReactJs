@@ -1,19 +1,25 @@
 import React, { useState } from "react";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
 
 export function ToDoList() {
-	const [tasks, setTasks] = useState([]);
+	const [tasks, setTasks] = useState([
+		{ id: 1, text: "Это первая задача" },
+		{ id: 2, text: "Это вторая задача" },
+		{ id: 3, text: "Это третья задача" },
+	]);
 
 	const [taskText, setTaskText] = useState("");
 
-	async function add() {
+	async function addTask() {
 		let newId = 0;
 		tasks.length === 0 ? (newId = 1) : (newId = tasks[tasks.length - 1].id + 1);
-		console.log(newId);
-		console.log("-------");
 
-		const newTask = { id: newId, display: true, text: `${taskText}` };
+		const newTask = { id: newId, text: `${taskText}` };
 		setTasks([...tasks, newTask]);
 		setTaskText("");
 	}
@@ -25,21 +31,35 @@ export function ToDoList() {
 	return (
 		<div>
 			{tasks.map((task) => (
-				<div key={task.id}>
-					<p>{task.text}</p>
-					<button
-						className="btn-delete-task"
+				<div className="task" key={`task${task.id}`}>
+
+					<ListItem alignItems="flex-start">
+						<ListItemText className="task__item" primary={task.text} />
+					</ListItem>
+
+					<IconButton
 						onClick={() => {
 							setTasks(tasks.filter((thisTask) => thisTask.id !== task.id));
 						}}
+						aria-label="delete"
 					>
-						Удалить task
-					</button>
+						<DeleteIcon />
+					</IconButton>
 				</div>
 			))}
 
-			<TextField onChange={changeTaskText} id="filled-basic" label="Новая Задача" variant="filled" value={taskText} />
-			<button onClick={add}>добавить</button>
+			<div className="new-task">
+				<TextField
+					onChange={changeTaskText}
+					id="outlined-multiline-flexible"
+					label="Новая Задача"
+					multiline
+					value={taskText}
+				/>
+				<Button variant="contained" onClick={addTask}>
+					Добавить задачу
+				</Button>
+			</div>
 		</div>
 	);
 }
