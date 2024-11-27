@@ -1,0 +1,9 @@
+.light_theme {
+	color: white;
+	background-color: black;
+}
+
+.dark_theme {
+	color: black;
+	background-color: white;
+}
