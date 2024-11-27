@@ -1,12 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-const reducer = (theme = "light", action) => {
+const initialValue = {
+	theme: "light",
+};
+
+const reducer = (state = initialValue, action) => {
 	switch (action.type) {
 		case "TOGGLE_THEME":
-			return theme === "light" ? "dark" : "light";
+			return { ...state, theme: state.theme === "light" ? "dark" : "light" };
 
 		default:
-			return theme;
+			return state;
 	}
 };
 
