@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import store from "./store/index";
 import ProductList from "./components/ProductsList";
 import AddProduct from "./components/AddProduct";
+import ChangeProduct from "./components/ChangeProduct";
 import "./App.css";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
 			<Provider store={store}>
 				<ProductList />
 				<AddProduct />
+        <ChangeProduct />
 			</Provider>
 		</div>
 	);

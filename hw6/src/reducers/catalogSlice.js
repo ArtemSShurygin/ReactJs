@@ -41,9 +41,36 @@ const catalogSlice = createSlice({
 
 		addProduct: (state, { payload: productItem }) => {
 			state.products.push(productItem);
+			console.log("Товар добавлен", productItem);
+		},
+
+		changeProduct: (state, { payload: productItem }) => {
+			const findId = state.products.findIndex((product) => product.id === productItem.id);
+
+			if (findId === -1) {
+				console.log(` Товар с id:${productItem.id} не найден`);
+			} else {
+				// TODO заменить условия, на перебор объктов ключ:значение
+				if (productItem.name !== "") {
+					state.products[findId].name = productItem.name;
+				}
+				if (productItem.description !== "") {
+					state.products[findId].description = productItem.description;
+				}
+				if (productItem.price !== "") {
+					state.products[findId].price = productItem.price;
+				}
+				if (productItem.available !== "") {
+					state.products[findId].available = productItem.available;
+				}
+
+				//state.products[findId] = productItem
+				console.log(` Товар с id:${productItem.id} изменен`);
+				console.log(productItem);
+			}
 		},
 	},
 });
 
-export const { deleteProduct, changeAvailability, addProduct } = catalogSlice.actions;
+export const { deleteProduct, changeAvailability, addProduct, changeProduct } = catalogSlice.actions;
 export default catalogSlice.reducer;
